@@ -1,0 +1,38 @@
+<html>
+<body>
+<script>
+
+var expr = {
+	'A': ['B', 'C'],
+	'B': ['C', 'D'],
+	'C': ['B'],
+	'D': ['D']
+};
+
+var stack = [];
+function recurse(v) {
+	
+	
+	if(stack.indexOf(v) != -1) {
+		// loop
+		console.log('loop '+stack+','+v);
+		return;
+	}
+
+	stack.push(v);
+	
+	var vars = expr[v];
+	
+	for(var i=0;i<vars.length;i++) {
+		recurse(vars[i]);
+	}
+
+	stack.pop();
+}
+
+
+recurse('A');
+
+</script>
+</body>
+</html>
